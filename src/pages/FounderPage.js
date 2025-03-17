@@ -1,6 +1,7 @@
 // src/pages/FounderPage.js
 import React from 'react';
 import { useParams } from 'react-router-dom';
+
 import { companies } from '../data/sampleData';
 import { Typography, Box, Paper } from '@mui/material';
 import ExperienceChart from '../components/charts/ExperienceChart';

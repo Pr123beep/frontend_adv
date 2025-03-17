@@ -1,6 +1,7 @@
 // src/pages/CompanyPage.js
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
+
 import { companies } from '../data/sampleData';
 import { Typography, Button, Box } from '@mui/material';
 

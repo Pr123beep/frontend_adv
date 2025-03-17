@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 6,
             "patches": [
                 {
                     "date": 1742192019922,
@@ -16,6 +16,22 @@
                 {
                     "date": 1742194586234,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,12 +5,12 @@\n import { Typography, Button, Box } from '@mui/material';\r\n \r\n function CompanyPage() {\r\n   const { companyName } = useParams();\r\n+  const decodedName = decodeURIComponent(companyName);\r\n \r\n-  // Find the relevant company data\r\n   const company = companies.find(\r\n-    (c) => c['company-name'] === decodeURIComponent(companyName)\r\n+    (c) => c['company-name'] === decodedName\r\n   );\r\n \r\n   if (!company) {\r\n     return (\r\n@@ -19,10 +19,9 @@\n       </Box>\r\n     );\r\n   }\r\n \r\n-  // Array of founder names\r\n-  const founders = company['founder-names'];\r\n+  const founders = company['founder-names'] || [];\r\n \r\n   return (\r\n     <Box sx={{ p: 3 }}>\r\n       <Typography variant=\"h4\" gutterBottom>\r\n@@ -30,9 +29,8 @@\n       </Typography>\r\n       <Typography variant=\"body1\" paragraph>\r\n         Founders:\r\n       </Typography>\r\n-\r\n       {founders.map((founder) => (\r\n         <Button\r\n           key={founder}\r\n           variant=\"outlined\"\r\n@@ -43,9 +41,9 @@\n           {founder}\r\n         </Button>\r\n       ))}\r\n \r\n-      {/* Insert advanced charts or stats about the company here */}\r\n+      {/* Additional company details or charts, etc. */}\r\n     </Box>\r\n   );\r\n }\r\n \r\n"
+                },
+                {
+                    "date": 1742195197401,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n // src/pages/CompanyPage.js\r\n import React from 'react';\r\n import { useParams, Link } from 'react-router-dom';\r\n+import './styles.css';\r\n import { companies } from '../data/sampleData';\r\n import { Typography, Button, Box } from '@mui/material';\r\n \r\n function CompanyPage() {\r\n"
+                },
+                {
+                    "date": 1742195310743,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n // src/pages/CompanyPage.js\r\n import React from 'react';\r\n import { useParams, Link } from 'react-router-dom';\r\n-import './styles.css';\r\n import { companies } from '../data/sampleData';\r\n import { Typography, Button, Box } from '@mui/material';\r\n \r\n function CompanyPage() {\r\n"
+                },
+                {
+                    "date": 1742195460010,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n // src/pages/CompanyPage.js\r\n import React from 'react';\r\n import { useParams, Link } from 'react-router-dom';\r\n+import './styles.css'; \r\n import { companies } from '../data/sampleData';\r\n import { Typography, Button, Box } from '@mui/material';\r\n \r\n function CompanyPage() {\r\n"
+                },
+                {
+                    "date": 1742195692644,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n // src/pages/CompanyPage.js\r\n import React from 'react';\r\n import { useParams, Link } from 'react-router-dom';\r\n-import './styles.css'; \r\n+\r\n import { companies } from '../data/sampleData';\r\n import { Typography, Button, Box } from '@mui/material';\r\n \r\n function CompanyPage() {\r\n"
                 }
             ],
             "date": 1742192019922,

@@ -1,6 +1,9 @@
 // src/App.js
 import React from 'react';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// In src/App.js or src/index.js
+import './styles.css';
 
 import HomePage from './pages/HomePage';
 import CompanyPage from './pages/CompanyPage';
