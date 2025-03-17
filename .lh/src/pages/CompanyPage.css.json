@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 4,
             "patches": [
                 {
                     "date": 1742198383299,
@@ -20,6 +20,10 @@
                 {
                     "date": 1742198483860,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,9 +75,10 @@\n   \r\n   .company-btn:hover {\r\n     background-color: #555;\r\n   }\r\n-  .company-container::after {\r\n+\r\n+  /* .company-container::after {\r\n     content: '';\r\n     position: absolute;\r\n     bottom: 0;\r\n     left: 0;\r\n@@ -85,5 +86,5 @@\n     height: 120px;\r\n     background: url('wave.svg') no-repeat bottom center;\r\n     background-size: cover;\r\n   }\r\n-    \n\\ No newline at end of file\n+   */\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1742199445604,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-/* Light background with wave effect at bottom */\r\n+/* Light pastel background */\r\n .company-container {\r\n     min-height: 100vh;\r\n     padding: 2rem;\r\n     margin: 0 auto;\r\n@@ -7,9 +7,9 @@\n     background: linear-gradient(\r\n       to bottom,\r\n       #ffffff 0%,\r\n       #f3f8ff 100%\r\n-    ) no-repeat;\r\n+    );\r\n     font-family: 'Roboto', sans-serif;\r\n     position: relative;\r\n   }\r\n   \r\n@@ -44,8 +44,9 @@\n   .company-founders-list {\r\n     display: flex;\r\n     flex-wrap: wrap;\r\n     gap: 0.8rem;\r\n+    margin-bottom: 2rem;\r\n   }\r\n   \r\n   /* Founder link styling */\r\n   .company-founder-link {\r\n@@ -69,22 +70,11 @@\n     color: #fff;\r\n     padding: 0.6rem 1.2rem;\r\n     border-radius: 4px;\r\n     text-decoration: none;\r\n-    margin-top: 1.5rem;\r\n+    transition: background-color 0.3s ease;\r\n   }\r\n   \r\n   .company-btn:hover {\r\n     background-color: #555;\r\n   }\r\n-\r\n-  /* .company-container::after {\r\n-    content: '';\r\n-    position: absolute;\r\n-    bottom: 0;\r\n-    left: 0;\r\n-    width: 100%;\r\n-    height: 120px;\r\n-    background: url('wave.svg') no-repeat bottom center;\r\n-    background-size: cover;\r\n-  }\r\n\\ No newline at end of file\n-   */\n+  \n\\ No newline at end of file\n"
                 }
             ],
             "date": 1742198383299,

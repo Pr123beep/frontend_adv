@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/components/charts/ExperienceChart.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1742199508220,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1742232522554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,25 +0,0 @@\n-.chart-container {\r\n-    width: 100%;\r\n-    margin-top: 1rem;\r\n-    background: #fff;\r\n-    border: 1px solid #ddd;\r\n-    border-radius: 6px;\r\n-    padding: 1rem;\r\n-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);\r\n-    animation: fadeInChart 0.5s ease forwards;\r\n-  }\r\n-  \r\n-  /* Subtle fade in for the chart container */\r\n-  @keyframes fadeInChart {\r\n-    from {\r\n-      opacity: 0;\r\n-    }\r\n-    to {\r\n-      opacity: 1;\r\n-    }\r\n-  }\r\n-  \r\n-  .bar-chart {\r\n-    /* If you want to style the Recharts container specifically, do it here */\r\n-  }\r\n-  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1742232543934,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,12 @@\n+.chart-container {\r\n+    width: 100%;\r\n+    margin-top: 1rem;\r\n+    background: #fff;\r\n+    border: 1px solid #ddd;\r\n+    border-radius: 6px;\r\n+    padding: 1rem;\r\n+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);\r\n+    animation: fadeInChart 0.5s ease forwards;\r\n+  }\r\n+  \r\n+  /* Subtle fade in for the chart container */\r\n"
+                }
+            ],
+            "date": 1742199508220,
+            "name": "Commit-0",
+            "content": ".chart-container {\r\n    width: 100%;\r\n    margin-top: 1rem;\r\n    background: #fff;\r\n    border: 1px solid #ddd;\r\n    border-radius: 6px;\r\n    padding: 1rem;\r\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);\r\n    animation: fadeInChart 0.5s ease forwards;\r\n  }\r\n  \r\n  /* Subtle fade in for the chart container */\r\n  @keyframes fadeInChart {\r\n    from {\r\n      opacity: 0;\r\n    }\r\n    to {\r\n      opacity: 1;\r\n    }\r\n  }\r\n  \r\n  .bar-chart {\r\n    /* If you want to style the Recharts container specifically, do it here */\r\n  }\r\n  "
+        }
+    ]
+}
