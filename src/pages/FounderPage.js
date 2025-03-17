@@ -7,13 +7,13 @@ import ExperienceChart from '../components/charts/ExperienceChart';
 
 function FounderPage() {
   const { founderName } = useParams();
+  const decodedFounderName = decodeURIComponent(founderName);
 
   let founderData = null;
   let parentCompany = '';
 
-  // Loop over each company in case you have multiple
   for (const comp of companies) {
-    const data = comp['linkedin-data'][founderName];
+    const data = comp['linkedin-data']?.[decodedFounderName];
     if (data) {
       founderData = data;
       parentCompany = comp['company-name'];
@@ -34,10 +34,10 @@ function FounderPage() {
   return (
     <Box sx={{ p: 3 }}>
       <Typography variant="h4" gutterBottom>
-        {founderName} ({parentCompany})
+        {decodedFounderName} ({parentCompany})
       </Typography>
       <Typography variant="body1" paragraph>
-        {founderData.Bio}
+        {founderData.Bio || 'No Bio'}
       </Typography>
 
       <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
@@ -47,14 +47,13 @@ function FounderPage() {
         <ExperienceChart experiences={experiences} />
       </Paper>
 
-      {/* Additional data like Education, etc. */}
       {founderData.Education && (
         <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
           <Typography variant="h6" gutterBottom>
             Education:
           </Typography>
           <Typography>
-            {founderData.Education.Institute} - {founderData.Education.Degree}
+            {founderData.Education.Institute} — {founderData.Education.Degree}
           </Typography>
           <Typography>
             {founderData.Education.Date}

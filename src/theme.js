@@ -4,15 +4,15 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1976d2' // custom color
+      main: '#1976d2',
     },
     secondary: {
-      main: '#f50057'
-    }
+      main: '#f50057',
+    },
   },
   typography: {
-    fontFamily: 'Roboto, sans-serif'
-  }
+    fontFamily: 'Roboto, sans-serif',
+  },
 });
 
 export default theme;

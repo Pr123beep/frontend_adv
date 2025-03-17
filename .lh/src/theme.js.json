@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1742192125315,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1742194553303,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,16 +3,16 @@\n \r\n const theme = createTheme({\r\n   palette: {\r\n     primary: {\r\n-      main: '#1976d2' // custom color\r\n+      main: '#1976d2',\r\n     },\r\n     secondary: {\r\n-      main: '#f50057'\r\n-    }\r\n+      main: '#f50057',\r\n+    },\r\n   },\r\n   typography: {\r\n-    fontFamily: 'Roboto, sans-serif'\r\n-  }\r\n+    fontFamily: 'Roboto, sans-serif',\r\n+  },\r\n });\r\n \r\n export default theme;\r\n"
                 }
             ],
             "date": 1742192125315,

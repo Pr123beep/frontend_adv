@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1742192035893,
@@ -12,6 +12,14 @@
                 {
                     "date": 1742193217753,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +1,25 @@\n+// src/components/charts/ExperienceChart.js\r\n import React from 'react';\r\n-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';\r\n+import {\r\n+  BarChart,\r\n+  Bar,\r\n+  XAxis,\r\n+  YAxis,\r\n+  CartesianGrid,\r\n+  Tooltip,\r\n+  ResponsiveContainer\r\n+} from 'recharts';\r\n \r\n function ExperienceChart({ experiences }) {\r\n-  // For demonstration, let’s transform experiences into a data array with year range or total months\r\n-  // Example: { Role: 'CEO', Company: '100ms', totalMonths: 36 }\r\n-\r\n+  // For demonstration, let’s transform experiences into a data array with approximate total months\r\n   const data = experiences.map((exp) => {\r\n     const dateRange = exp.Date || '';\r\n-    // Very naive parse to get approximate total months:\r\n-    // (In real code, you might parse actual start/end year/month)\r\n     let totalMonths = 0;\r\n     if (dateRange.includes('-')) {\r\n       const parts = dateRange.split('-');\r\n-      // e.g. \"Oct 2020 - Present\" -> approximate\r\n       if (parts[1].toLowerCase().includes('present')) {\r\n-        totalMonths = 36; // Hard-coded for demonstration\r\n+        totalMonths = 36; // Hard-coded example\r\n       } else {\r\n         totalMonths = 24; // Hard-coded example\r\n       }\r\n     }\r\n"
+                },
+                {
+                    "date": 1742194621577,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,18 +10,18 @@\n   ResponsiveContainer\r\n } from 'recharts';\r\n \r\n function ExperienceChart({ experiences }) {\r\n-  // For demonstration, let’s transform experiences into a data array with approximate total months\r\n+  // transform experiences into chart data\r\n   const data = experiences.map((exp) => {\r\n     const dateRange = exp.Date || '';\r\n     let totalMonths = 0;\r\n     if (dateRange.includes('-')) {\r\n       const parts = dateRange.split('-');\r\n       if (parts[1].toLowerCase().includes('present')) {\r\n-        totalMonths = 36; // Hard-coded example\r\n+        totalMonths = 36;\r\n       } else {\r\n-        totalMonths = 24; // Hard-coded example\r\n+        totalMonths = 24;\r\n       }\r\n     }\r\n \r\n     return {\r\n"
+                },
+                {
+                    "date": 1742194755107,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,8 @@\n   ResponsiveContainer\r\n } from 'recharts';\r\n \r\n function ExperienceChart({ experiences }) {\r\n-  // transform experiences into chart data\r\n   const data = experiences.map((exp) => {\r\n     const dateRange = exp.Date || '';\r\n     let totalMonths = 0;\r\n     if (dateRange.includes('-')) {\r\n"
                 }
             ],
             "date": 1742192035893,

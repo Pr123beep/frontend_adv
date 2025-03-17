@@ -6,10 +6,10 @@ import { Typography, Button, Box } from '@mui/material';
 
 function CompanyPage() {
   const { companyName } = useParams();
+  const decodedName = decodeURIComponent(companyName);
 
-  // Find the relevant company data
   const company = companies.find(
-    (c) => c['company-name'] === decodeURIComponent(companyName)
+    (c) => c['company-name'] === decodedName
   );
 
   if (!company) {
@@ -20,8 +20,7 @@ function CompanyPage() {
     );
   }
 
-  // Array of founder names
-  const founders = company['founder-names'];
+  const founders = company['founder-names'] || [];
 
   return (
     <Box sx={{ p: 3 }}>
@@ -31,7 +30,6 @@ function CompanyPage() {
       <Typography variant="body1" paragraph>
         Founders:
       </Typography>
-
       {founders.map((founder) => (
         <Button
           key={founder}
@@ -44,7 +42,7 @@ function CompanyPage() {
         </Button>
       ))}
 
-      {/* Insert advanced charts or stats about the company here */}
+      {/* Additional company details or charts, etc. */}
     </Box>
   );
 }

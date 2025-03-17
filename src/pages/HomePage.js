@@ -17,11 +17,12 @@ function HomePage() {
       {companies.map((company, index) => (
         <Card key={index} sx={{ marginBottom: '1rem' }}>
           <CardContent>
-            <Typography variant="h5">
-              {company['company-name']}
-            </Typography>
+            <Typography variant="h5">{company['company-name']}</Typography>
             <Typography variant="body2" color="text.secondary">
-              Founders: {company['founder-names'].join(', ')}
+              Founders:{' '}
+              {company['founder-names']
+                ? company['founder-names'].join(', ')
+                : 'No founders found'}
             </Typography>
           </CardContent>
           <CardActions>

@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1742191989286,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1742194569185,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,11 @@\n // src/App.js\n import React from 'react';\n import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';\n \n-// Pages\n import HomePage from './pages/HomePage';\n import CompanyPage from './pages/CompanyPage';\n import FounderPage from './pages/FounderPage';\n-\n-// Layout components\n import Navbar from './components/layout/Navbar';\n import Footer from './components/layout/Footer';\n \n function App() {\n"
                 }
             ],
             "date": 1742191989286,

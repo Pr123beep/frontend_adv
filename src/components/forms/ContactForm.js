@@ -8,19 +8,20 @@ function ContactForm() {
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Send formData to your backend or an email service
     console.log('Submitted form:', formData);
   };
 
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
-      <Typography variant="h6" gutterBottom>Request Pitch Deck</Typography>
+      <Typography variant="h6" gutterBottom>
+        Request Pitch Deck
+      </Typography>
       <TextField
         name="name"
         label="Name"

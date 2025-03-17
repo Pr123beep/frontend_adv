@@ -2,12 +2,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// Pages
 import HomePage from './pages/HomePage';
 import CompanyPage from './pages/CompanyPage';
 import FounderPage from './pages/FounderPage';
-
-// Layout components
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 

@@ -11,16 +11,15 @@ import {
 } from 'recharts';
 
 function ExperienceChart({ experiences }) {
-  // For demonstration, let’s transform experiences into a data array with approximate total months
   const data = experiences.map((exp) => {
     const dateRange = exp.Date || '';
     let totalMonths = 0;
     if (dateRange.includes('-')) {
       const parts = dateRange.split('-');
       if (parts[1].toLowerCase().includes('present')) {
-        totalMonths = 36; // Hard-coded example
+        totalMonths = 36;
       } else {
-        totalMonths = 24; // Hard-coded example
+        totalMonths = 24;
       }
     }
 
