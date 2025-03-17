@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/App.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1742191989286,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1742191989286,
+            "name": "Commit-0",
+            "content": "// src/App.js\nimport React from 'react';\nimport { BrowserRouter as Router, Routes, Route } from 'react-router-dom';\n\n// Pages\nimport HomePage from './pages/HomePage';\nimport CompanyPage from './pages/CompanyPage';\nimport FounderPage from './pages/FounderPage';\n\n// Layout components\nimport Navbar from './components/layout/Navbar';\nimport Footer from './components/layout/Footer';\n\nfunction App() {\n  return (\n    <Router>\n      <Navbar />\n      <Routes>\n        <Route path=\"/\" element={<HomePage />} />\n        <Route path=\"/company/:companyName\" element={<CompanyPage />} />\n        <Route path=\"/founder/:founderName\" element={<FounderPage />} />\n      </Routes>\n      <Footer />\n    </Router>\n  );\n}\n\nexport default App;\n"
+        }
+    ]
+}

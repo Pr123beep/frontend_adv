@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/theme.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1742192125315,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1742192125315,
+            "name": "Commit-0",
+            "content": "// src/theme.js\r\nimport { createTheme } from '@mui/material/styles';\r\n\r\nconst theme = createTheme({\r\n  palette: {\r\n    primary: {\r\n      main: '#1976d2' // custom color\r\n    },\r\n    secondary: {\r\n      main: '#f50057'\r\n    }\r\n  },\r\n  typography: {\r\n    fontFamily: 'Roboto, sans-serif'\r\n  }\r\n});\r\n\r\nexport default theme;\r\n"
+        }
+    ]
+}

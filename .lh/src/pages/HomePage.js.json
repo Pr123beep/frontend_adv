@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/pages/HomePage.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1742192012241,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1742193158092,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+// src/pages/HomePage.js\r\n import React from 'react';\r\n import { Link } from 'react-router-dom';\r\n import { Card, CardContent, Typography, CardActions, Button } from '@mui/material';\r\n import { companies } from '../data/sampleData';\r\n@@ -12,10 +13,10 @@\n       <Typography variant=\"body1\" paragraph>\r\n         Explore companies and their founders below.\r\n       </Typography>\r\n \r\n-      {companies.map((company) => (\r\n-        <Card key={company['company-name']} sx={{ marginBottom: '1rem' }}>\r\n+      {companies.map((company, index) => (\r\n+        <Card key={index} sx={{ marginBottom: '1rem' }}>\r\n           <CardContent>\r\n             <Typography variant=\"h5\">\r\n               {company['company-name']}\r\n             </Typography>\r\n@@ -23,10 +24,10 @@\n               Founders: {company['founder-names'].join(', ')}\r\n             </Typography>\r\n           </CardContent>\r\n           <CardActions>\r\n-            <Button \r\n-              variant=\"contained\" \r\n+            <Button\r\n+              variant=\"contained\"\r\n               component={Link}\r\n               to={`/company/${encodeURIComponent(company['company-name'])}`}\r\n             >\r\n               View Details\r\n"
+                }
+            ],
+            "date": 1742192012241,
+            "name": "Commit-0",
+            "content": "import React from 'react';\r\nimport { Link } from 'react-router-dom';\r\nimport { Card, CardContent, Typography, CardActions, Button } from '@mui/material';\r\nimport { companies } from '../data/sampleData';\r\n\r\nfunction HomePage() {\r\n  return (\r\n    <div style={{ padding: '2rem' }}>\r\n      <Typography variant=\"h4\" gutterBottom>\r\n        Welcome, Investor!\r\n      </Typography>\r\n      <Typography variant=\"body1\" paragraph>\r\n        Explore companies and their founders below.\r\n      </Typography>\r\n\r\n      {companies.map((company) => (\r\n        <Card key={company['company-name']} sx={{ marginBottom: '1rem' }}>\r\n          <CardContent>\r\n            <Typography variant=\"h5\">\r\n              {company['company-name']}\r\n            </Typography>\r\n            <Typography variant=\"body2\" color=\"text.secondary\">\r\n              Founders: {company['founder-names'].join(', ')}\r\n            </Typography>\r\n          </CardContent>\r\n          <CardActions>\r\n            <Button \r\n              variant=\"contained\" \r\n              component={Link}\r\n              to={`/company/${encodeURIComponent(company['company-name'])}`}\r\n            >\r\n              View Details\r\n            </Button>\r\n          </CardActions>\r\n        </Card>\r\n      ))}\r\n    </div>\r\n  );\r\n}\r\n\r\nexport default HomePage;\r\n"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/components/charts/ExperienceChart.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1742192035893,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1742193217753,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +1,25 @@\n+// src/components/charts/ExperienceChart.js\r\n import React from 'react';\r\n-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';\r\n+import {\r\n+  BarChart,\r\n+  Bar,\r\n+  XAxis,\r\n+  YAxis,\r\n+  CartesianGrid,\r\n+  Tooltip,\r\n+  ResponsiveContainer\r\n+} from 'recharts';\r\n \r\n function ExperienceChart({ experiences }) {\r\n-  // For demonstration, let’s transform experiences into a data array with year range or total months\r\n-  // Example: { Role: 'CEO', Company: '100ms', totalMonths: 36 }\r\n-\r\n+  // For demonstration, let’s transform experiences into a data array with approximate total months\r\n   const data = experiences.map((exp) => {\r\n     const dateRange = exp.Date || '';\r\n-    // Very naive parse to get approximate total months:\r\n-    // (In real code, you might parse actual start/end year/month)\r\n     let totalMonths = 0;\r\n     if (dateRange.includes('-')) {\r\n       const parts = dateRange.split('-');\r\n-      // e.g. \"Oct 2020 - Present\" -> approximate\r\n       if (parts[1].toLowerCase().includes('present')) {\r\n-        totalMonths = 36; // Hard-coded for demonstration\r\n+        totalMonths = 36; // Hard-coded example\r\n       } else {\r\n         totalMonths = 24; // Hard-coded example\r\n       }\r\n     }\r\n"
+                }
+            ],
+            "date": 1742192035893,
+            "name": "Commit-0",
+            "content": "import React from 'react';\r\nimport { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';\r\n\r\nfunction ExperienceChart({ experiences }) {\r\n  // For demonstration, let’s transform experiences into a data array with year range or total months\r\n  // Example: { Role: 'CEO', Company: '100ms', totalMonths: 36 }\r\n\r\n  const data = experiences.map((exp) => {\r\n    const dateRange = exp.Date || '';\r\n    // Very naive parse to get approximate total months:\r\n    // (In real code, you might parse actual start/end year/month)\r\n    let totalMonths = 0;\r\n    if (dateRange.includes('-')) {\r\n      const parts = dateRange.split('-');\r\n      // e.g. \"Oct 2020 - Present\" -> approximate\r\n      if (parts[1].toLowerCase().includes('present')) {\r\n        totalMonths = 36; // Hard-coded for demonstration\r\n      } else {\r\n        totalMonths = 24; // Hard-coded example\r\n      }\r\n    }\r\n\r\n    return {\r\n      role: exp.Role,\r\n      months: totalMonths,\r\n      company: exp.Company\r\n    };\r\n  });\r\n\r\n  return (\r\n    <ResponsiveContainer width=\"100%\" height={300}>\r\n      <BarChart data={data} margin={{ top: 20, right: 20, left: 0, bottom: 20 }}>\r\n        <CartesianGrid strokeDasharray=\"3 3\" />\r\n        <XAxis dataKey=\"role\" />\r\n        <YAxis />\r\n        <Tooltip />\r\n        <Bar dataKey=\"months\" fill=\"#8884d8\" />\r\n      </BarChart>\r\n    </ResponsiveContainer>\r\n  );\r\n}\r\n\r\nexport default ExperienceChart;\r\n"
+        }
+    ]
+}

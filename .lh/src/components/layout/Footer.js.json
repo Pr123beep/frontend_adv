@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/layout/Footer.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1742193204712,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1742193204712,
+            "name": "Commit-0",
+            "content": "// src/components/layout/Footer.js\r\nimport React from 'react';\r\nimport { Box, Typography } from '@mui/material';\r\n\r\nfunction Footer() {\r\n  return (\r\n    <Box sx={{ p: 2, textAlign: 'center', backgroundColor: '#f0f0f0', mt: 4 }}>\r\n      <Typography variant=\"body2\">\r\n        © 2025 My Startup Investor Dashboard\r\n      </Typography>\r\n    </Box>\r\n  );\r\n}\r\n\r\nexport default Footer;\r\n"
+        }
+    ]
+}

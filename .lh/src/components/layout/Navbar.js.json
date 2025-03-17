@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/layout/Navbar.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1742193195814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1742193195814,
+            "name": "Commit-0",
+            "content": "// src/components/layout/Navbar.js\r\nimport React from 'react';\r\nimport AppBar from '@mui/material/AppBar';\r\nimport Toolbar from '@mui/material/Toolbar';\r\nimport Typography from '@mui/material/Typography';\r\nimport { Link } from 'react-router-dom';\r\nimport { Button } from '@mui/material';\r\n\r\nfunction Navbar() {\r\n  return (\r\n    <AppBar position=\"static\" sx={{ backgroundColor: '#1976d2' }}>\r\n      <Toolbar>\r\n        <Typography variant=\"h6\" component=\"div\" sx={{ flexGrow: 1 }}>\r\n          Startup Investor Dashboard\r\n        </Typography>\r\n        <Button color=\"inherit\" component={Link} to=\"/\">\r\n          Home\r\n        </Button>\r\n      </Toolbar>\r\n    </AppBar>\r\n  );\r\n}\r\n\r\nexport default Navbar;\r\n"
+        }
+    ]
+}

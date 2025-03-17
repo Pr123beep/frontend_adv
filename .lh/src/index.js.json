@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/index.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1742192102152,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1742192558442,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,6 @@\n+import React from 'react';\n+import ReactDOM from 'react-dom/client';\n+import App from './App';\n+\n+const root = ReactDOM.createRoot(document.getElementById('root'));\n+root.render(<App />);\n"
+                },
+                {
+                    "date": 1742192582643,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,4 @@\n-import React from 'react';\n-import ReactDOM from 'react-dom/client';\n-import App from './App';\n-\n-const root = ReactDOM.createRoot(document.getElementById('root'));\n-root.render(<App />);\n // src/index.js\n import React from 'react';\n import ReactDOM from 'react-dom/client';\n import App from './App';\n"
+                }
+            ],
+            "date": 1742192102152,
+            "name": "Commit-0",
+            "content": "// src/index.js\nimport React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport App from './App';\nimport { ThemeProvider } from '@mui/material/styles';\nimport theme from './theme';\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(\n  <ThemeProvider theme={theme}>\n    <App />\n  </ThemeProvider>\n);\n"
+        }
+    ]
+}
