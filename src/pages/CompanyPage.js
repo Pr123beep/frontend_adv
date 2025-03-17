@@ -1,50 +1,49 @@
 // src/pages/CompanyPage.js
 import React from 'react';
+import './CompanyPage.css';
 import { useParams, Link } from 'react-router-dom';
-
 import { companies } from '../data/sampleData';
-import { Typography, Button, Box } from '@mui/material';
 
 function CompanyPage() {
   const { companyName } = useParams();
   const decodedName = decodeURIComponent(companyName);
 
+  // Find the relevant company data
   const company = companies.find(
     (c) => c['company-name'] === decodedName
   );
 
   if (!company) {
     return (
-      <Box sx={{ p: 3 }}>
-        <Typography variant="h5">Company not found!</Typography>
-      </Box>
+      <div className="company-container fade-in">
+        <h1 className="company-title">Company not found!</h1>
+        <Link to="/" className="company-btn">Go Back</Link>
+      </div>
     );
   }
 
   const founders = company['founder-names'] || [];
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Typography variant="h4" gutterBottom>
-        {company['company-name']}
-      </Typography>
-      <Typography variant="body1" paragraph>
-        Founders:
-      </Typography>
-      {founders.map((founder) => (
-        <Button
-          key={founder}
-          variant="outlined"
-          sx={{ marginRight: 1, marginBottom: 1 }}
-          component={Link}
-          to={`/founder/${encodeURIComponent(founder)}`}
-        >
-          {founder}
-        </Button>
-      ))}
-
-      {/* Additional company details or charts, etc. */}
-    </Box>
+    <div className="company-container fade-in">
+      <h1 className="company-title">{company['company-name']}</h1>
+      <p className="company-subtitle">Founders:</p>
+      <div className="company-founders-list">
+        {founders.length > 0 ? (
+          founders.map((founder) => (
+            <Link
+              key={founder}
+              to={`/founder/${encodeURIComponent(founder)}`}
+              className="company-founder-link"
+            >
+              {founder}
+            </Link>
+          ))
+        ) : (
+          <p>No founders listed.</p>
+        )}
+      </div>
+    </div>
   );
 }
 

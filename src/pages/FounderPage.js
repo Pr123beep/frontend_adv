@@ -1,67 +1,75 @@
 // src/pages/FounderPage.js
 import React from 'react';
-import { useParams } from 'react-router-dom';
-
+import './FounderPage.css';
+import { useParams, Link } from 'react-router-dom';
 import { companies } from '../data/sampleData';
-import { Typography, Box, Paper } from '@mui/material';
-import ExperienceChart from '../components/charts/ExperienceChart';
 
 function FounderPage() {
   const { founderName } = useParams();
-  const decodedFounderName = decodeURIComponent(founderName);
+  const decodedName = decodeURIComponent(founderName);
 
   let founderData = null;
   let parentCompany = '';
 
-  for (const comp of companies) {
-    const data = comp['linkedin-data']?.[decodedFounderName];
+  for (const company of companies) {
+    const data = company['linkedin-data']?.[decodedName];
     if (data) {
       founderData = data;
-      parentCompany = comp['company-name'];
+      parentCompany = company['company-name'];
       break;
     }
   }
 
   if (!founderData) {
     return (
-      <Box sx={{ p: 3 }}>
-        <Typography variant="h5">Founder not found!</Typography>
-      </Box>
+      <div className="founder-container fade-slide">
+        <h1 className="founder-title">Founder not found!</h1>
+        <Link to="/" className="founder-btn">Go Back</Link>
+      </div>
     );
   }
 
   const experiences = founderData.Experience || [];
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Typography variant="h4" gutterBottom>
-        {decodedFounderName} ({parentCompany})
-      </Typography>
-      <Typography variant="body1" paragraph>
-        {founderData.Bio || 'No Bio'}
-      </Typography>
+    <div className="founder-container fade-slide">
+      <h1 className="founder-title">{decodedName} ({parentCompany})</h1>
+      <p className="founder-bio">{founderData.Bio}</p>
 
-      <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
-        <Typography variant="h6" gutterBottom>
-          Experience Timeline:
-        </Typography>
-        <ExperienceChart experiences={experiences} />
-      </Paper>
+      <h2 className="founder-section-title">Experience</h2>
+      <div className="founder-experience-list">
+        {experiences.map((exp, idx) => (
+          <div key={idx} className="founder-experience-card">
+            <h3 className="founder-experience-role">
+              {exp.Role || 'Role Not Found'}
+            </h3>
+            <p className="founder-experience-company">
+              {exp.Company || 'Company Not Found'}
+            </p>
+            <p className="founder-experience-date">
+              {exp.Date || 'Date Not Found'}
+            </p>
+            {exp.Description && (
+              <p className="founder-experience-desc">{exp.Description}</p>
+            )}
+          </div>
+        ))}
+      </div>
 
       {founderData.Education && (
-        <Paper sx={{ p: 2, mb: 2 }} elevation={3}>
-          <Typography variant="h6" gutterBottom>
-            Education:
-          </Typography>
-          <Typography>
-            {founderData.Education.Institute} — {founderData.Education.Degree}
-          </Typography>
-          <Typography>
-            {founderData.Education.Date}
-          </Typography>
-        </Paper>
+        <>
+          <h2 className="founder-section-title">Education</h2>
+          <p className="founder-education">
+            {founderData.Education.Institute} -{' '}
+            {founderData.Education.Degree} ({founderData.Education.Date})
+          </p>
+        </>
       )}
-    </Box>
+
+      <Link to="/" className="founder-btn">
+        Back to Home
+      </Link>
+    </div>
   );
 }
 

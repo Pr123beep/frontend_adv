@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1742192027394,
@@ -44,6 +44,10 @@
                 {
                     "date": 1742195703103,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,76 +1,8 @@\n // src/pages/FounderPage.js\r\n import React from 'react';\r\n import { useParams } from 'react-router-dom';\r\n-import './styles.css'; \r\n-import { companies } from '../data/sampleData';\r\n-import { Typography, Box, Paper } from '@mui/material';\r\n-import ExperienceChart from '../components/charts/ExperienceChart';\r\n \r\n-function FounderPage() {\r\n-  const { founderName } = useParams();\r\n-  const decodedFounderName = decodeURIComponent(founderName);\r\n-\r\n-  let founderData = null;\r\n-  let parentCompany = '';\r\n-\r\n-  for (const comp of companies) {\r\n-    const data = comp['linkedin-data']?.[decodedFounderName];\r\n-    if (data) {\r\n-      founderData = data;\r\n-      parentCompany = comp['company-name'];\r\n-      break;\r\n-    }\r\n-  }\r\n-\r\n-  if (!founderData) {\r\n-    return (\r\n-      <Box sx={{ p: 3 }}>\r\n-        <Typography variant=\"h5\">Founder not found!</Typography>\r\n-      </Box>\r\n-    );\r\n-  }\r\n-\r\n-  const experiences = founderData.Experience || [];\r\n-\r\n-  return (\r\n-    <Box sx={{ p: 3 }}>\r\n-      <Typography variant=\"h4\" gutterBottom>\r\n-        {decodedFounderName} ({parentCompany})\r\n-      </Typography>\r\n-      <Typography variant=\"body1\" paragraph>\r\n-        {founderData.Bio || 'No Bio'}\r\n-      </Typography>\r\n-\r\n-      <Paper sx={{ p: 2, mb: 2 }} elevation={3}>\r\n-        <Typography variant=\"h6\" gutterBottom>\r\n-          Experience Timeline:\r\n-        </Typography>\r\n-        <ExperienceChart experiences={experiences} />\r\n-      </Paper>\r\n-\r\n-      {founderData.Education && (\r\n-        <Paper sx={{ p: 2, mb: 2 }} elevation={3}>\r\n-          <Typography variant=\"h6\" gutterBottom>\r\n-            Education:\r\n-          </Typography>\r\n-          <Typography>\r\n-            {founderData.Education.Institute} — {founderData.Education.Degree}\r\n-          </Typography>\r\n-          <Typography>\r\n-            {founderData.Education.Date}\r\n-          </Typography>\r\n-        </Paper>\r\n-      )}\r\n-    </Box>\r\n-  );\r\n-}\r\n-\r\n-export default FounderPage;\r\n-// src/pages/FounderPage.js\r\n-import React from 'react';\r\n-import { useParams } from 'react-router-dom';\r\n-\r\n import { companies } from '../data/sampleData';\r\n import { Typography, Box, Paper } from '@mui/material';\r\n import ExperienceChart from '../components/charts/ExperienceChart';\r\n \r\n"
+                },
+                {
+                    "date": 1742198455077,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,5 +56,21 @@\n         ))}\r\n       </div>\r\n \r\n       {founderData.Education && (\r\n-     \n\\ No newline at end of file\n+        <>\r\n+          <h2 className=\"founder-section-title\">Education</h2>\r\n+          <p className=\"founder-education\">\r\n+            {founderData.Education.Institute} -{' '}\r\n+            {founderData.Education.Degree} ({founderData.Education.Date})\r\n+          </p>\r\n+        </>\r\n+      )}\r\n+\r\n+      <Link to=\"/\" className=\"founder-btn\">\r\n+        Back to Home\r\n+      </Link>\r\n+    </div>\r\n+  );\r\n+}\r\n+\r\n+export default FounderPage;\r\n"
                 }
             ],
             "date": 1742192027394,

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1742192019922,
@@ -32,6 +32,10 @@
                 {
                     "date": 1742195692644,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n // src/pages/CompanyPage.js\r\n import React from 'react';\r\n import { useParams, Link } from 'react-router-dom';\r\n-import './styles.css'; \r\n+\r\n import { companies } from '../data/sampleData';\r\n import { Typography, Button, Box } from '@mui/material';\r\n \r\n function CompanyPage() {\r\n"
+                },
+                {
+                    "date": 1742198415405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,5 +39,12 @@\n               {founder}\r\n             </Link>\r\n           ))\r\n         ) : (\r\n-       \n\\ No newline at end of file\n+          <p>No founders listed.</p>\r\n+        )}\r\n+      </div>\r\n+    </div>\r\n+  );\r\n+}\r\n+\r\n+export default CompanyPage;\r\n"
                 }
             ],
             "date": 1742192019922,
