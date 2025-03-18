@@ -4,69 +4,76 @@ import './HomePage.css'; // Page-specific CSS
 import { Link } from 'react-router-dom';
 import { companies } from '../data/sampleData';
 
+/**
+ * If the user typed "IIT", we transform it to "indian institute of technology".
+ * Add more synonyms if needed.
+ */
+function transformSearchTerm(term) {
+  const synonymsMap = {
+    iit: 'indian institute of technology',
+    // Add more synonyms if you wish:
+    // 'iim': 'indian institute of management',
+    // 'mmu': 'madan mohan malaviya university',
+  };
+
+  const lower = term.trim().toLowerCase();
+  return synonymsMap[lower] || term;
+}
+
 function HomePage() {
   // States for multiple filters
   const [founderNameFilter, setFounderNameFilter] = useState('');
   const [instituteFilter, setInstituteFilter] = useState('');
   const [degreeFilter, setDegreeFilter] = useState('');
 
-  // State for AND/OR logic
-  const [logicMode, setLogicMode] = useState('AND'); // 'AND' or 'OR'
-
-  // Check if a single founder matches typed filters
-  // We'll interpret the typed strings in a case-insensitive way.
-  function doesFounderMatch(founder) {
+  /**
+   * Single founder check:
+   * "entry" is [founderKey, founderObj] from Object.entries(...).
+   * founderKey = "Kshitij Gupta"
+   * founderObj = { "LinkedIn URL": "...", "Bio": "...", "Education": {...}, ... }
+   */
+  function doesFounderMatch([founderKey, founderObj]) {
     let matchName = true;
     let matchInstitute = true;
     let matchDegree = true;
 
-    // Founder name match
+    // Name filter: Check the founderKey (e.g. "Kshitij Gupta")
     if (founderNameFilter.trim()) {
-      // Check if the founder's name (the key in "linkedin-data") or the 'Name' field includes the typed string
-      // Some data might store the name in 'Name' or we might rely on the object key in the parent loop
-      // If you rely on 'Name' field:
-      const nameField = founder?.Name || ''; 
-      matchName = nameField
-        .toLowerCase()
-        .includes(founderNameFilter.toLowerCase());
+      const typedName = founderNameFilter.trim().toLowerCase();
+      const actualName = founderKey.toLowerCase(); // e.g. "kshitij gupta"
+      matchName = actualName.includes(typedName);
     }
 
-    // Institute match
+    // Institute filter: with synonyms
     if (instituteFilter.trim()) {
-      const instituteField = founder?.Education?.Institute || '';
-      matchInstitute = instituteField
-        .toLowerCase()
-        .includes(instituteFilter.toLowerCase());
+      const typedInstitute = transformSearchTerm(instituteFilter).toLowerCase();
+      const actualInstitute =
+        founderObj?.Education?.Institute?.toLowerCase() || '';
+      matchInstitute = actualInstitute.includes(typedInstitute);
     }
 
-    // Degree match
+    // Degree filter
     if (degreeFilter.trim()) {
-      const degreeField = founder?.Education?.Degree || '';
-      matchDegree = degreeField
-        .toLowerCase()
-        .includes(degreeFilter.toLowerCase());
+      const typedDegree = degreeFilter.trim().toLowerCase();
+      const actualDegree =
+        founderObj?.Education?.Degree?.toLowerCase() || '';
+      matchDegree = actualDegree.includes(typedDegree);
     }
 
-    if (logicMode === 'AND') {
-      // All typed fields must match
-      return matchName && matchInstitute && matchDegree;
-    } else {
-      // logicMode === 'OR' => At least one typed field must match
-      return matchName || matchInstitute || matchDegree;
-    }
+    // All typed fields must match
+    return matchName && matchInstitute && matchDegree;
   }
 
-  // Filter the companies array
+  // Filter the companies
   const filteredCompanies = companies.filter((company) => {
-    // If there's no "linkedin-data" or it's empty, skip
+    // If no "linkedin-data", skip
     if (!company['linkedin-data']) return false;
 
-    // Convert the "linkedin-data" object to an array of founder objects
-    const founderDataArray = Object.values(company['linkedin-data']);
+    // Convert "linkedin-data" to array of [key, value] pairs
+    const founderDataArray = Object.entries(company['linkedin-data']);
 
-    // For the company to pass, at least one founder must match
-    // (in the sense of "some" founder matches doesFounderMatch)
-    return founderDataArray.some((founderObj) => doesFounderMatch(founderObj));
+    // If at least one founder passes "doesFounderMatch", keep the company
+    return founderDataArray.some((entry) => doesFounderMatch(entry));
   });
 
   return (
@@ -116,33 +123,6 @@ function HomePage() {
             value={degreeFilter}
             onChange={(e) => setDegreeFilter(e.target.value)}
           />
-        </div>
-
-        {/* AND/OR Toggle */}
-        <div className="filter-row">
-          <label className="filter-label">Logic Mode:</label>
-          <div className="logic-toggle">
-            <label>
-              <input
-                type="radio"
-                name="logicMode"
-                value="AND"
-                checked={logicMode === 'AND'}
-                onChange={(e) => setLogicMode(e.target.value)}
-              />
-              AND
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="logicMode"
-                value="OR"
-                checked={logicMode === 'OR'}
-                onChange={(e) => setLogicMode(e.target.value)}
-              />
-              OR
-            </label>
-          </div>
         </div>
       </div>
 

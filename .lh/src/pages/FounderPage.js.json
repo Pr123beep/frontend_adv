@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 10,
+            "activePatchIndex": 11,
             "patches": [
                 {
                     "date": 1742192027394,
@@ -48,6 +48,10 @@
                 {
                     "date": 1742198455077,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,5 +56,21 @@\n         ))}\r\n       </div>\r\n \r\n       {founderData.Education && (\r\n-     \n\\ No newline at end of file\n+        <>\r\n+          <h2 className=\"founder-section-title\">Education</h2>\r\n+          <p className=\"founder-education\">\r\n+            {founderData.Education.Institute} -{' '}\r\n+            {founderData.Education.Degree} ({founderData.Education.Date})\r\n+          </p>\r\n+        </>\r\n+      )}\r\n+\r\n+      <Link to=\"/\" className=\"founder-btn\">\r\n+        Back to Home\r\n+      </Link>\r\n+    </div>\r\n+  );\r\n+}\r\n+\r\n+export default FounderPage;\r\n"
+                },
+                {
+                    "date": 1742235422303,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n \r\n   const experiences = founderData.Experience || [];\r\n \r\n   return (\r\n-    <div>\r\n+    <div\r\n     <div className=\"founder-container fade-slide\">\r\n       <h1 className=\"founder-title\">{decodedName} ({parentCompany})</h1>\r\n       <p className=\"founder-bio\">{founderData.Bio}</p>\r\n \r\n"
                 }
             ],
             "date": 1742192027394,
