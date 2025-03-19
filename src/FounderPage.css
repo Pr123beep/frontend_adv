@@ -1,0 +1,277 @@
+/* FounderPage.css */
+.founder-container {
+  padding: 4rem 5%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8faff, #ffffff);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background effects */
+.founder-container::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: 
+    linear-gradient(120deg, rgba(37, 99, 235, 0.02), transparent),
+    radial-gradient(circle at 90% 10%, rgba(5, 150, 105, 0.03), transparent 60%),
+    radial-gradient(circle at 10% 90%, rgba(37, 99, 235, 0.02), transparent 60%);
+  z-index: -1;
+}
+
+/* Animated mesh background */
+.founder-mesh-bg {
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(30deg, rgba(37, 99, 235, 0.03) 12%, transparent 12.5%, transparent 87%, rgba(37, 99, 235, 0.03) 87.5%, rgba(37, 99, 235, 0.03)),
+    linear-gradient(150deg, rgba(37, 99, 235, 0.03) 12%, transparent 12.5%, transparent 87%, rgba(37, 99, 235, 0.03) 87.5%, rgba(37, 99, 235, 0.03)),
+    linear-gradient(30deg, rgba(37, 99, 235, 0.03) 12%, transparent 12.5%, transparent 87%, rgba(37, 99, 235, 0.03) 87.5%, rgba(37, 99, 235, 0.03)),
+    linear-gradient(150deg, rgba(37, 99, 235, 0.03) 12%, transparent 12.5%, transparent 87%, rgba(37, 99, 235, 0.03) 87.5%, rgba(37, 99, 235, 0.03));
+  background-size: 80px 140px;
+  background-position: 0 0, 0 0, 40px 70px, 40px 70px;
+  animation: meshMove 60s linear infinite;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+@keyframes meshMove {
+  0% { background-position: 0 0, 0 0, 40px 70px, 40px 70px; }
+  100% { background-position: 80px 140px, 80px 140px, 120px 210px, 120px 210px; }
+}
+
+.founder-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.founder-profile {
+  position: sticky;
+  top: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(234, 234, 234, 0.8);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  height: fit-content;
+}
+
+.founder-title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  position: relative;
+  display: inline-block;
+}
+
+.founder-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #2563eb, #059669);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: expandWidth 0.8s ease forwards 0.2s;
+}
+
+@keyframes expandWidth {
+  to { transform: scaleX(1); }
+}
+
+.founder-bio {
+  color: #4b5563;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  margin: 2rem 0;
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards 0.4s;
+}
+
+.founder-section-title {
+  font-size: 1.6rem;
+  color: #1a1a1a;
+  margin: 3rem 0 1.5rem;
+  font-weight: 600;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.founder-section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, #2563eb, #059669);
+  border-radius: 2px;
+}
+
+.founder-experience-list {
+  display: grid;
+  gap: 1.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards 0.6s;
+}
+
+.founder-experience-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(234, 234, 234, 0.8);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.founder-experience-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.founder-experience-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.founder-experience-card:hover::before {
+  transform: translateX(100%);
+}
+
+.founder-experience-role {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.founder-experience-company {
+  font-size: 1.1rem;
+  color: #2563eb;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.founder-experience-date {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.founder-experience-desc {
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.founder-education {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  border: 1px solid rgba(234, 234, 234, 0.8);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards 0.8s;
+}
+
+.founder-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-top: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.founder-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.founder-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.founder-btn:hover::before {
+  transform: translateX(100%);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .founder-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .founder-profile {
+    position: relative;
+    top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .founder-container {
+    padding: 3rem 1rem;
+  }
+
+  .founder-title {
+    font-size: 2rem;
+  }
+
+  .founder-experience-card {
+    padding: 1.2rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

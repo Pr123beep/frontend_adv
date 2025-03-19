@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 7,
+            "activePatchIndex": 8,
             "patches": [
                 {
                     "date": 1742192019922,
@@ -36,6 +36,10 @@
                 {
                     "date": 1742198415405,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,5 +39,12 @@\n               {founder}\r\n             </Link>\r\n           ))\r\n         ) : (\r\n-       \n\\ No newline at end of file\n+          <p>No founders listed.</p>\r\n+        )}\r\n+      </div>\r\n+    </div>\r\n+  );\r\n+}\r\n+\r\n+export default CompanyPage;\r\n"
+                },
+                {
+                    "date": 1742378594522,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n function CompanyPage() {\r\n   const { companyName } = useParams();\r\n   const decodedName = decodeURIComponent(companyName);\r\n \r\n-  // Find the relevant company data\r\n+  // Find the company based on the name\r\n   const company = companies.find(\r\n     (c) => c['company-name'] === decodedName\r\n   );\r\n \r\n@@ -21,30 +21,55 @@\n       </div>\r\n     );\r\n   }\r\n \r\n-  const founders = company['founder-names'] || [];\r\n+  // Prepare founder details from linkedin-data if available.\r\n+  const foundersData = company['linkedin-data']\r\n+    ? Object.entries(company['linkedin-data']).map(([founderName, data]) => ({\r\n+        name: founderName,\r\n+        linkedIn: data['LinkedIn URL'] || '#',\r\n+        // Generate default Wellfound URL if not provided.\r\n+        wellfound: data['Wellfound URL'] || `https://wellfound.com/search?q=${encodeURIComponent(founderName)}`,\r\n+      }))\r\n+    : [];\r\n \r\n   return (\r\n     <div className=\"company-container fade-in\">\r\n       <h1 className=\"company-title\">{company['company-name']}</h1>\r\n       <p className=\"company-subtitle\">Founders:</p>\r\n       <div className=\"company-founders-list\">\r\n-        {founders.length > 0 ? (\r\n-          founders.map((founder) => (\r\n-            <Link\r\n-              key={founder}\r\n-              to={`/founder/${encodeURIComponent(founder)}`}\r\n-              className=\"company-founder-link\"\r\n-            >\r\n-              {founder}\r\n-            </Link>\r\n+        {foundersData.length > 0 ? (\r\n\\ No newline at end of file\n+          foundersData.map((founder, idx) => (\r\n+            <div key={idx} className=\"founder-card\">\r\n+              <h3 className=\"founder-card-name\">{founder.name}</h3>\r\n+              <div className=\"founder-links\">\r\n+                <a\r\n+                  href={founder.linkedIn}\r\n+                  target=\"_blank\"\r\n+                  rel=\"noopener noreferrer\"\r\n+                  className=\"founder-link-btn\"\r\n+                >\r\n+                  LinkedIn\r\n+                </a>\r\n+                <a\r\n+                  href={founder.wellfound}\r\n+                  target=\"_blank\"\r\n+                  rel=\"noopener noreferrer\"\r\n+                  className=\"founder-link-btn\"\r\n+                >\r\n+                  Wellfound\r\n+                </a>\r\n+              </div>\r\n+            </div>\r\n           ))\r\n         ) : (\r\n           <p>No founders listed.</p>\r\n         )}\r\n       </div>\r\n+      <Link to=\"/\" className=\"company-btn\">\r\n+        Go Back\r\n+      </Link>\r\n     </div>\r\n   );\r\n }\r\n \r\n-export default CompanyPage;\n+export default CompanyPage;\r\n"
                 }
             ],
             "date": 1742192019922,

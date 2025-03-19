@@ -10,18 +10,22 @@ import {
   ResponsiveContainer
 } from 'recharts';
 
+// Helper function to calculate months from date range
+const calculateMonths = (dateRange) => {
+  const [startDate, endDate] = dateRange.split('-').map(date => date.trim());
+  
+  const start = new Date(startDate);
+  let end = endDate.toLowerCase().includes('present') ? new Date() : new Date(endDate);
+
+  // Calculate the difference in months
+  const months = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
+  return months > 0 ? months : 0; // Ensure non-negative value
+};
+
 function ExperienceChart({ experiences }) {
   const data = experiences.map((exp) => {
     const dateRange = exp.Date || '';
-    let totalMonths = 0;
-    if (dateRange.includes('-')) {
-      const parts = dateRange.split('-');
-      if (parts[1].toLowerCase().includes('present')) {
-        totalMonths = 36;
-      } else {
-        totalMonths = 24;
-      }
-    }
+    const totalMonths = dateRange.includes('-') ? calculateMonths(dateRange) : 0;
 
     return {
       role: exp.Role,

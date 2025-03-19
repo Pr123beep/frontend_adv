@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 6,
             "patches": [
                 {
                     "date": 1742192035893,
@@ -28,6 +28,10 @@
                 {
                     "date": 1742232599365,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,48 +1,6 @@\n // src/components/charts/ExperienceChart.js\r\n import React from 'react';\r\n-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';\r\n-import './ExperienceChart.css'; // chart-specific styling\r\n-\r\n-function ExperienceChart({ experiences }) {\r\n-  // We'll transform each experience into data for the chart\r\n-  // e.g. totalMonths is a rough estimate\r\n-  const data = experiences.map((exp) => {\r\n-    // naive parse for total months\r\n-    let totalMonths = 12; // default fallback\r\n-    if (exp.Date && exp.Date.includes('-')) {\r\n-      // e.g. \"Oct 2020 - Present\" -> parse or approximate\r\n-      if (exp.Date.toLowerCase().includes('present')) {\r\n-        totalMonths = 36; \r\n-      } else {\r\n-        totalMonths = 24; \r\n-      }\r\n-    }\r\n-    return {\r\n-      role: exp.Role || 'N/A',\r\n-      months: totalMonths,\r\n-      company: exp.Company || 'N/A'\r\n-    };\r\n-  });\r\n-\r\n-  return (\r\n-    <div className=\"chart-container\">\r\n-      <ResponsiveContainer width=\"100%\" height={300}>\r\n-        <BarChart data={data} className=\"bar-chart\">\r\n-          <CartesianGrid strokeDasharray=\"3 3\" />\r\n-          <XAxis dataKey=\"role\" />\r\n-          <YAxis />\r\n-          <Tooltip />\r\n-          <Bar dataKey=\"months\" fill=\"#8884d8\" animationDuration={800} />\r\n-        </BarChart>\r\n-      </ResponsiveContainer>\r\n-    </div>\r\n-  );\r\n-}\r\n-\r\n-export default ExperienceChart;\r\n-// src/components/charts/ExperienceChart.js\r\n-import React from 'react';\r\n import {\r\n   BarChart,\r\n   Bar,\r\n   XAxis,\r\n@@ -84,5 +42,5 @@\n     </ResponsiveContainer>\r\n   );\r\n }\r\n \r\n-export default ExperienceChart;\r\n+export default ExperienceChart;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1742378660182,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,20 +9,24 @@\n   Tooltip,\r\n   ResponsiveContainer\r\n } from 'recharts';\r\n \r\n+// Helper function to calculate months from date range\r\n+const calculateMonths = (dateRange) => {\r\n+  const [startDate, endDate] = dateRange.split('-').map(date => date.trim());\r\n+  \r\n+  const start = new Date(startDate);\r\n+  let end = endDate.toLowerCase().includes('present') ? new Date() : new Date(endDate);\r\n+\r\n+  // Calculate the difference in months\r\n+  const months = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());\r\n+  return months > 0 ? months : 0; // Ensure non-negative value\r\n+};\r\n+\r\n function ExperienceChart({ experiences }) {\r\n   const data = experiences.map((exp) => {\r\n     const dateRange = exp.Date || '';\r\n-    let totalMonths = 0;\r\n-    if (dateRange.includes('-')) {\r\n-      const parts = dateRange.split('-');\r\n-      if (parts[1].toLowerCase().includes('present')) {\r\n-        totalMonths = 36;\r\n-      } else {\r\n-        totalMonths = 24;\r\n-      }\r\n-    }\r\n+    const totalMonths = dateRange.includes('-') ? calculateMonths(dateRange) : 0;\r\n \r\n     return {\r\n       role: exp.Role,\r\n       months: totalMonths,\r\n@@ -42,5 +46,5 @@\n     </ResponsiveContainer>\r\n   );\r\n }\r\n \r\n-export default ExperienceChart;\n\\ No newline at end of file\n+export default ExperienceChart;\r\n"
                 }
             ],
             "date": 1742192035893,

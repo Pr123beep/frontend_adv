@@ -143,6 +143,7 @@ export const companies = [
               "Date": "2006 - 2010"
             },
             "Company": "100ms"
+
           }
         }
       },

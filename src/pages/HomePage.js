@@ -1,79 +1,82 @@
-// src/pages/HomePage.js
 import React, { useState } from 'react';
-import './HomePage.css'; // Page-specific CSS
+import '../HomePage.css';
 import { Link } from 'react-router-dom';
 import { companies } from '../data/sampleData';
+import { TextField, Button, Box, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 
-/**
- * If the user typed "IIT", we transform it to "indian institute of technology".
- * Add more synonyms if needed.
- */
 function transformSearchTerm(term) {
   const synonymsMap = {
     iit: 'indian institute of technology',
-    // Add more synonyms if you wish:
-    // 'iim': 'indian institute of management',
-    // 'mmu': 'madan mohan malaviya university',
+    iim: 'indian institute of management',
+    iiit: 'indian institute of information technology',
   };
-
   const lower = term.trim().toLowerCase();
   return synonymsMap[lower] || term;
 }
 
 function HomePage() {
-  // States for multiple filters
+  // Input states while typing
   const [founderNameFilter, setFounderNameFilter] = useState('');
   const [instituteFilter, setInstituteFilter] = useState('');
   const [degreeFilter, setDegreeFilter] = useState('');
+  // Match mode: "any" or "all"
+  const [matchMode, setMatchMode] = useState('any');
 
-  /**
-   * Single founder check:
-   * "entry" is [founderKey, founderObj] from Object.entries(...).
-   * founderKey = "Kshitij Gupta"
-   * founderObj = { "LinkedIn URL": "...", "Bio": "...", "Education": {...}, ... }
-   */
+  // Applied filters state updated on clicking "Search"
+  const [appliedFilters, setAppliedFilters] = useState({
+    founder: '',
+    institute: '',
+    degree: '',
+    mode: 'any'
+  });
+
+  const handleSearch = () => {
+    setAppliedFilters({
+      founder: founderNameFilter.trim().toLowerCase(),
+      institute: transformSearchTerm(instituteFilter).toLowerCase(),
+      degree: degreeFilter.trim().toLowerCase(),
+      mode: matchMode
+    });
+  };
+
+  const handleClear = () => {
+    setFounderNameFilter('');
+    setInstituteFilter('');
+    setDegreeFilter('');
+    setMatchMode('any');
+    setAppliedFilters({ founder: '', institute: '', degree: '', mode: 'any' });
+  };
+
+  // Filtering logic for each founder
   function doesFounderMatch([founderKey, founderObj]) {
     let matchName = true;
     let matchInstitute = true;
     let matchDegree = true;
-
-    // Name filter: Check the founderKey (e.g. "Kshitij Gupta")
-    if (founderNameFilter.trim()) {
-      const typedName = founderNameFilter.trim().toLowerCase();
-      const actualName = founderKey.toLowerCase(); // e.g. "kshitij gupta"
-      matchName = actualName.includes(typedName);
+    if (appliedFilters.founder) {
+      matchName = founderKey.toLowerCase().includes(appliedFilters.founder);
     }
-
-    // Institute filter: with synonyms
-    if (instituteFilter.trim()) {
-      const typedInstitute = transformSearchTerm(instituteFilter).toLowerCase();
+    if (appliedFilters.institute) {
       const actualInstitute =
         founderObj?.Education?.Institute?.toLowerCase() || '';
-      matchInstitute = actualInstitute.includes(typedInstitute);
+      matchInstitute = actualInstitute.includes(appliedFilters.institute);
     }
-
-    // Degree filter
-    if (degreeFilter.trim()) {
-      const typedDegree = degreeFilter.trim().toLowerCase();
+    if (appliedFilters.degree) {
       const actualDegree =
         founderObj?.Education?.Degree?.toLowerCase() || '';
-      matchDegree = actualDegree.includes(typedDegree);
+      matchDegree = actualDegree.includes(appliedFilters.degree);
     }
-
-    // All typed fields must match
     return matchName && matchInstitute && matchDegree;
   }
 
-  // Filter the companies
+  // Filter companies based on the applied filters and match mode.
   const filteredCompanies = companies.filter((company) => {
-    // If no "linkedin-data", skip
     if (!company['linkedin-data']) return false;
-
-    // Convert "linkedin-data" to array of [key, value] pairs
     const founderDataArray = Object.entries(company['linkedin-data']);
-
-    // If at least one founder passes "doesFounderMatch", keep the company
-    return founderDataArray.some((entry) => doesFounderMatch(entry));
+    if (appliedFilters.mode === 'all') {
+      return founderDataArray.every((entry) => doesFounderMatch(entry));
+    } else {
+      return founderDataArray.some((entry) => doesFounderMatch(entry));
+    }
   });
 
   return (
@@ -81,50 +84,76 @@ function HomePage() {
       <h1 className="home-title">Welcome, Investor!</h1>
       <p className="home-subtitle">Explore companies and their founders below.</p>
 
-      {/* === Filter UI Section === */}
-      <div className="advanced-filter">
-        <div className="filter-row">
-          <label className="filter-label" htmlFor="founderFilter">
-            Founder Name:
-          </label>
-          <input
+      {/* === Advanced Filter Section === */}
+      <Box className="advanced-filter" sx={{ mb: 2 }}>
+        <Box className="filter-row">
+          <TextField
             id="founderFilter"
-            type="text"
-            className="filter-input"
-            placeholder="e.g. Kshitij"
+            label="Founder Name"
+            variant="outlined"
             value={founderNameFilter}
             onChange={(e) => setFounderNameFilter(e.target.value)}
+            fullWidth
+            margin="normal"
           />
-        </div>
-
-        <div className="filter-row">
-          <label className="filter-label" htmlFor="instituteFilter">
-            Institute:
-          </label>
-          <input
+        </Box>
+        <Box className="filter-row">
+          <TextField
             id="instituteFilter"
-            type="text"
-            className="filter-input"
-            placeholder="e.g. IIT, Stanford"
+            label="Institute (e.g. IIT, Stanford)"
+            variant="outlined"
             value={instituteFilter}
             onChange={(e) => setInstituteFilter(e.target.value)}
+            fullWidth
+            margin="normal"
           />
-        </div>
-
-        <div className="filter-row">
-          <label className="filter-label" htmlFor="degreeFilter">
-            Degree:
-          </label>
-          <input
+        </Box>
+        <Box className="filter-row">
+          <TextField
             id="degreeFilter"
-            type="text"
-            className="filter-input"
-            placeholder="e.g. BTech, MBA"
+            label="Degree (e.g. BTech, MBA)"
+            variant="outlined"
             value={degreeFilter}
             onChange={(e) => setDegreeFilter(e.target.value)}
+            fullWidth
+            margin="normal"
           />
-        </div>
-      </div>
+        </Box>
+
+        {/* Match Mode */}
+        <FormControl component="fieldset" sx={{ mt: 2 }}>
+          <FormLabel component="legend" sx={{ color: '#fff' }}>Match Mode</FormLabel>
+          <RadioGroup
+            row
+            aria-label="matchMode"
+            name="matchMode"
+            value={matchMode}
+            onChange={(e) => setMatchMode(e.target.value)}
+          >
+            <FormControlLabel
+              value="any"
+              control={<Radio sx={{ color: '#fff' }} />}
+              label="Match any founder"
+              sx={{ color: '#fff' }}
+            />
+            <FormControlLabel
+              value="all"
+              control={<Radio sx={{ color: '#fff' }} />}
+              label="Match all founders"
+              sx={{ color: '#fff' }}
+            />
+          </RadioGroup>
+        </FormControl>
+
+        <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
+          <Button variant="contained" color="primary" onClick={handleSearch}>
+            Search
+          </Button>
+          <Button variant="outlined" color="secondary" onClick={handleClear}>
+            Clear Filters
+          </Button>
+        </Box>
+      </Box>
 
       {/* === Filtered Results === */}
       {filteredCompanies.map((company, idx) => (

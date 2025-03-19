@@ -1,0 +1,26 @@
+{
+    "sourceFile": "B_Balanced_Array.cpp",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1742367300768,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1742367308395,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,8 +53,9 @@\n \r\n \r\n bool PJ = false;\r\n void solve() {\r\n+    int n;cin>>n;\r\n     \r\n     \r\n     \r\n }\r\n"
+                },
+                {
+                    "date": 1742367330027,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,12 +55,14 @@\n bool PJ = false;\r\n void solve() {\r\n     int n;cin>>n;\r\n     if(n%4==2){\r\n-        cout<<\"\"\r\n+        cout<<\"YES\"<<endl;\r\n+        return;\r\n     }\r\n     \r\n     \r\n+    \r\n }\r\n \r\n \r\n \r\n"
+                }
+            ],
+            "date": 1742367300768,
+            "name": "Commit-0",
+            "content": "kindasomethi"
+        }
+    ]
+}
