@@ -4,19 +4,16 @@ import { Box, TextField, Button, Typography } from '@mui/material';
 
 function ContactForm() {
   const [formData, setFormData] = useState({ name: '', email: '' });
-
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Submitted form:', formData);
   };
-
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
       <Typography variant="h6" gutterBottom>

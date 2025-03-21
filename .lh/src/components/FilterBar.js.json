@@ -3,11 +3,55 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 11,
             "patches": [
                 {
                     "date": 1742380255134,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1742555904495,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n       onFilterChange(null);\r\n     } else {\r\n       setSelectedCategory(categoryKey);\r\n       onFilterChange(categoryKey);\r\n+      on\r\n     }\r\n   };\r\n \r\n   const handleAllFiltersClick = () => {\r\n"
+                },
+                {
+                    "date": 1742555910981,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import React, { useState } from 'react';\r\n import { Box, Chip, Button } from '@mui/material';\r\n import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';\r\n+import { OpenInFullTwoTone } from '@mui/icons-material';\r\n \r\n const categories = [\r\n   { label: 'Posts', key: 'posts' },\r\n   { label: 'Jobs', key: 'jobs' },\r\n@@ -26,9 +27,9 @@\n       onFilterChange(null);\r\n     } else {\r\n       setSelectedCategory(categoryKey);\r\n       onFilterChange(categoryKey);\r\n-      on\r\n+      OpenInFullTwoTone()\r\n     }\r\n   };\r\n \r\n   const handleAllFiltersClick = () => {\r\n"
+                },
+                {
+                    "date": 1742555926036,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,8 @@\n       onFilterChange(null);\r\n     } else {\r\n       setSelectedCategory(categoryKey);\r\n       onFilterChange(categoryKey);\r\n-      OpenInFullTwoTone()\r\n     }\r\n   };\r\n \r\n   const handleAllFiltersClick = () => {\r\n"
+                },
+                {
+                    "date": 1742555932038,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,8 +47,9 @@\n         px: 2,\r\n         backgroundColor: '#fff',\r\n         boxShadow: '0 1px 4px rgba(0,0,0,0.1)',\r\n         borderRadius: 2,\r\n+        border\r\n       }}\r\n     >\r\n       {categories.map((cat) => {\r\n         const isSelected = cat.key === selectedCategory;\r\n"
+                },
+                {
+                    "date": 1742555941378,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n         px: 2,\r\n         backgroundColor: '#fff',\r\n         boxShadow: '0 1px 4px rgba(0,0,0,0.1)',\r\n         borderRadius: 2,\r\n-        border\r\n+        \r\n       }}\r\n     >\r\n       {categories.map((cat) => {\r\n         const isSelected = cat.key === selectedCategory;\r\n"
+                },
+                {
+                    "date": 1742555946864,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,11 @@\n         px: 2,\r\n         backgroundColor: '#fff',\r\n         boxShadow: '0 1px 4px rgba(0,0,0,0.1)',\r\n         borderRadius: 2,\r\n-        \r\n+        '&::-webkit-scrollbar': {\r\n+          display: 'none',\r\n+        },\r\n       }}\r\n     >\r\n       {categories.map((cat) => {\r\n         const isSelected = cat.key === selectedCategory;\r\n"
+                },
+                {
+                    "date": 1742555958769,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,11 +47,9 @@\n         px: 2,\r\n         backgroundColor: '#fff',\r\n         boxShadow: '0 1px 4px rgba(0,0,0,0.1)',\r\n         borderRadius: 2,\r\n-        '&::-webkit-scrollbar': {\r\n-          display: 'none',\r\n-        },\r\n+        \r\n       }}\r\n     >\r\n       {categories.map((cat) => {\r\n         const isSelected = cat.key === selectedCategory;\r\n"
+                },
+                {
+                    "date": 1742555968996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,8 +74,9 @@\n         endIcon={<ArrowDropDownIcon />}\r\n         sx={{\r\n           textTransform: 'none',\r\n           borderRadius: '9999px',\r\n+          \r\n         }}\r\n       >\r\n         All filters\r\n       </Button>\r\n"
+                },
+                {
+                    "date": 1742555978414,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,9 @@\n         endIcon={<ArrowDropDownIcon />}\r\n         sx={{\r\n           textTransform: 'none',\r\n           borderRadius: '9999px',\r\n-          \r\n+          borderIndex: 1,\r\n         }}\r\n       >\r\n         All filters\r\n       </Button>\r\n"
+                },
+                {
+                    "date": 1742555988480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,9 @@\n         endIcon={<ArrowDropDownIcon />}\r\n         sx={{\r\n           textTransform: 'none',\r\n           borderRadius: '9999px',\r\n-          borderIndex: 1,\r\n+          borderInl: 1,\r\n         }}\r\n       >\r\n         All filters\r\n       </Button>\r\n"
+                },
+                {
+                    "date": 1742556003809,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,9 @@\n         endIcon={<ArrowDropDownIcon />}\r\n         sx={{\r\n           textTransform: 'none',\r\n           borderRadius: '9999px',\r\n-          borderInl: 1,\r\n+          \r\n         }}\r\n       >\r\n         All filters\r\n       </Button>\r\n"
                 }
             ],
             "date": 1742380255134,

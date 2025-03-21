@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/pages/NoLinkedInPage.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1742558251301,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1742558257152,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n // src/pages/NoLinkedInPage.js\r\n import React from 'react';\r\n import { Link, useParams } from 'react-router-dom';\r\n-import './NoLinkedInPage.css';\r\n+import '../NoLinkedInPage.css';\r\n \r\n function NoLinkedInPage() {\r\n   const { founderName } = useParams();\r\n   \r\n"
+                }
+            ],
+            "date": 1742558251301,
+            "name": "Commit-0",
+            "content": "// src/pages/NoLinkedInPage.js\r\nimport React from 'react';\r\nimport { Link, useParams } from 'react-router-dom';\r\nimport './NoLinkedInPage.css';\r\n\r\nfunction NoLinkedInPage() {\r\n  const { founderName } = useParams();\r\n  \r\n  return (\r\n    <div className=\"no-linkedin-container\">\r\n      <div className=\"animation-wrapper\">\r\n        <h1 className=\"creative-title\">LinkedIn Profile Not Available</h1>\r\n        <p className=\"creative-subtitle\">\r\n          Unfortunately, we couldn't find a LinkedIn profile for <strong>{founderName}</strong>.\r\n        </p>\r\n        <p className=\"creative-text\">\r\n          Check back later or contact support for more details.\r\n        </p>\r\n      </div>\r\n      <Link to=\"/\" className=\"back-home-btn\">Back to Home</Link>\r\n    </div>\r\n  );\r\n}\r\n\r\nexport default NoLinkedInPage;\r\n"
+        }
+    ]
+}

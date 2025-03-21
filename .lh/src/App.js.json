@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 6,
             "patches": [
                 {
                     "date": 1742191989286,
@@ -28,6 +28,10 @@
                 {
                     "date": 1742380337307,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n-// src/App.js\n import React from 'react';\n-\n import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';\n-// In src/App.js or src/index.js\n-import './styles.css';\n+import './styles.css'; // global styles\n+import './HomePage.css';\n+import './CompanyPage.css';\n+import './FounderPage.css';\n \n import HomePage from './pages/HomePage';\n import CompanyPage from './pages/CompanyPage';\n import FounderPage from './pages/FounderPage';\n"
+                },
+                {
+                    "date": 1742558356679,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,15 @@\n+// src/App.js\n import React from 'react';\n import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';\n-import './styles.css'; // global styles\n+import './styles.css';\n import './HomePage.css';\n import './CompanyPage.css';\n import './FounderPage.css';\n-\n import HomePage from './pages/HomePage';\n import CompanyPage from './pages/CompanyPage';\n import FounderPage from './pages/FounderPage';\n+import NoLinkedInPage from './pages/NoLinkedInPage';\n import Navbar from './components/layout/Navbar';\n import Footer from './components/layout/Footer';\n \n function App() {\n@@ -18,8 +19,9 @@\n       <Routes>\n         <Route path=\"/\" element={<HomePage />} />\n         <Route path=\"/company/:companyName\" element={<CompanyPage />} />\n         <Route path=\"/founder/:founderName\" element={<FounderPage />} />\n+        <Route path=\"/no-linkedin/:founderName\" element={<NoLinkedInPage />} />\n       </Routes>\n       <Footer />\n     </Router>\n   );\n"
                 }
             ],
             "date": 1742191989286,

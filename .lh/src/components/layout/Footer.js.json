@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1742193204712,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1742555521746,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n function Footer() {\r\n   return (\r\n     <Box sx={{ p: 2, textAlign: 'center', backgroundColor: '#f0f0f0', mt: 4 }}>\r\n       <Typography variant=\"body2\">\r\n-        © 2025 My Startup Investor Dashboard\r\n+       \r\n       </Typography>\r\n     </Box>\r\n   );\r\n }\r\n"
                 }
             ],
             "date": 1742193204712,

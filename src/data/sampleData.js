@@ -5993,7 +5993,8 @@ export const companies = [
         ],
         "linkedin-data": {
           "Kartik Luke Singh": {
-            "LinkedIn URL": "https://www.linkedin.com/in/kartikluke/",
+            //"https://www.linkedin.com/in/kartikluke/"
+            "LinkedIn URL": "",
             "Bio": "Throughout my career, I've been building startup products with an eye for everything; from the tables in the database to the pixels on the page. Looking to build the next generation of ground-breaking products and services.",
             "Experience": [
               {

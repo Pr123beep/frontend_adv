@@ -1,3 +1,4 @@
+// src/pages/CompanyPage.js
 import React from 'react';
 import '../CompanyPage.css';
 import { useParams, Link } from 'react-router-dom';
@@ -7,7 +8,7 @@ function CompanyPage() {
   const { companyName } = useParams();
   const decodedName = decodeURIComponent(companyName);
 
-  // Find the company by name
+  // Find the company by name.
   const company = companies.find(
     (c) => c['company-name'] === decodedName
   );
@@ -21,7 +22,7 @@ function CompanyPage() {
     );
   }
 
-  // Prepare founder details
+  // Prepare founder details.
   const foundersData = company['linkedin-data']
     ? Object.entries(company['linkedin-data']).map(([founderName, data]) => ({
         name: founderName,
@@ -35,19 +36,28 @@ function CompanyPage() {
       <h1 className="company-title">{company['company-name']}</h1>
       <p className="company-subtitle">Founders:</p>
       <div className="company-founders-list">
-        {foundersData.length>0?(
+        {foundersData.length > 0 ? (
           foundersData.map((founder, idx) => (
             <div key={idx} className="founder-card">
               <h3 className="founder-card-name">{founder.name}</h3>
               <div className="founder-links">
-                <a
-                  href={founder.linkedIn}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="founder-link-btn"
-                >
-                  LinkedIn
-                </a>
+                {founder.linkedIn === '#' ? (
+                  <Link
+                    to={`/no-linkedin/${encodeURIComponent(founder.name)}`}
+                    className="founder-link-btn"
+                  >
+                    LinkedIn
+                  </Link>
+                ) : (
+                  <a
+                    href={founder.linkedIn}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="founder-link-btn"
+                  >
+                    LinkedIn
+                  </a>
+                )}
                 <a
                   href={founder.wellfound}
                   target="_blank"

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Chip, Button } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { OpenInFullTwoTone } from '@mui/icons-material';
 
 const categories = [
   { label: 'Posts', key: 'posts' },
@@ -47,6 +48,7 @@ function FilterBar({ onFilterChange }) {
         backgroundColor: '#fff',
         boxShadow: '0 1px 4px rgba(0,0,0,0.1)',
         borderRadius: 2,
+        
       }}
     >
       {categories.map((cat) => {
@@ -73,6 +75,7 @@ function FilterBar({ onFilterChange }) {
         sx={{
           textTransform: 'none',
           borderRadius: '9999px',
+          
         }}
       >
         All filters

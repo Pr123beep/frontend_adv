@@ -2,8 +2,21 @@ import React, { useState } from 'react';
 import '../HomePage.css';
 import { Link } from 'react-router-dom';
 import { companies } from '../data/sampleData';
-import { TextField, Button, Box, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from '@mui/material';
+import {
+  Button,
+  Box,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  Autocomplete,
+  TextField
+} from '@mui/material';
 
+/**
+ * Transform synonyms for institutes (e.g. "IIT" to "indian institute of technology")
+ */
 function transformSearchTerm(term) {
   const synonymsMap = {
     iit: 'indian institute of technology',
@@ -14,17 +27,35 @@ function transformSearchTerm(term) {
   return synonymsMap[lower] || term;
 }
 
+// Options for the dropdown lists; update as needed
+const instituteOptions = [
+  "Indian Institute of Technology",
+  "Stanford University",
+  "Harvard University",
+  "Indian Institute of Management",
+  "MIT",
+  "University of Cambridge",
+  "University of Oxford"
+];
+
+const degreeOptions = [
+  "BTech",
+  "MBA",
+  "BSc",
+  "MTech",
+  "PhD",
+  "MSc"
+];
+
 function HomePage() {
-  // Input states while typing
-  const [founderNameFilter, setFounderNameFilter] = useState('');
-  const [instituteFilter, setInstituteFilter] = useState('');
-  const [degreeFilter, setDegreeFilter] = useState('');
+  // For dropdown selections, store the string value (or null)
+  const [selectedInstitute, setSelectedInstitute] = useState(null);
+  const [selectedDegree, setSelectedDegree] = useState(null);
   // Match mode: "any" or "all"
   const [matchMode, setMatchMode] = useState('any');
 
   // Applied filters state updated on clicking "Search"
   const [appliedFilters, setAppliedFilters] = useState({
-    founder: '',
     institute: '',
     degree: '',
     mode: 'any'
@@ -32,29 +63,23 @@ function HomePage() {
 
   const handleSearch = () => {
     setAppliedFilters({
-      founder: founderNameFilter.trim().toLowerCase(),
-      institute: transformSearchTerm(instituteFilter).toLowerCase(),
-      degree: degreeFilter.trim().toLowerCase(),
+      institute: selectedInstitute ? transformSearchTerm(selectedInstitute).toLowerCase() : '',
+      degree: selectedDegree ? selectedDegree.trim().toLowerCase() : '',
       mode: matchMode
     });
   };
 
   const handleClear = () => {
-    setFounderNameFilter('');
-    setInstituteFilter('');
-    setDegreeFilter('');
+    setSelectedInstitute(null);
+    setSelectedDegree(null);
     setMatchMode('any');
-    setAppliedFilters({ founder: '', institute: '', degree: '', mode: 'any' });
+    setAppliedFilters({ institute: '', degree: '', mode: 'any' });
   };
 
-  // Filtering logic for each founder
-  function doesFounderMatch([founderKey, founderObj]) {
-    let matchName = true;
+  // Filtering logic for each founder (using only institute and degree)
+  function doesFounderMatch([, founderObj]) {
     let matchInstitute = true;
     let matchDegree = true;
-    if (appliedFilters.founder) {
-      matchName = founderKey.toLowerCase().includes(appliedFilters.founder);
-    }
     if (appliedFilters.institute) {
       const actualInstitute =
         founderObj?.Education?.Institute?.toLowerCase() || '';
@@ -65,10 +90,10 @@ function HomePage() {
         founderObj?.Education?.Degree?.toLowerCase() || '';
       matchDegree = actualDegree.includes(appliedFilters.degree);
     }
-    return matchName && matchInstitute && matchDegree;
+    return matchInstitute && matchDegree;
   }
 
-  // Filter companies based on the applied filters and match mode.
+  // Filter companies based on applied institute and degree filters.
   const filteredCompanies = companies.filter((company) => {
     if (!company['linkedin-data']) return false;
     const founderDataArray = Object.entries(company['linkedin-data']);
@@ -84,45 +109,46 @@ function HomePage() {
       <h1 className="home-title">Welcome, Investor!</h1>
       <p className="home-subtitle">Explore companies and their founders below.</p>
 
-      {/* === Advanced Filter Section === */}
+      {/* Advanced Filter Section */}
       <Box className="advanced-filter" sx={{ mb: 2 }}>
         <Box className="filter-row">
-          <TextField
-            id="founderFilter"
-            label="Founder Name"
-            variant="outlined"
-            value={founderNameFilter}
-            onChange={(e) => setFounderNameFilter(e.target.value)}
+          <Autocomplete
+            value={selectedInstitute}
+            onChange={(event, newValue) => setSelectedInstitute(newValue)}
+            options={instituteOptions}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Institute (e.g. IIT, Stanford)"
+                variant="outlined"
+                placeholder="Select Institute"
+              />
+            )}
             fullWidth
-            margin="normal"
           />
         </Box>
         <Box className="filter-row">
-          <TextField
-            id="instituteFilter"
-            label="Institute (e.g. IIT, Stanford)"
-            variant="outlined"
-            value={instituteFilter}
-            onChange={(e) => setInstituteFilter(e.target.value)}
+          <Autocomplete
+            value={selectedDegree}
+            onChange={(event, newValue) => setSelectedDegree(newValue)}
+            options={degreeOptions}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Degree (e.g. BTech, MBA)"
+                variant="outlined"
+                placeholder="Select Degree"
+              />
+            )}
             fullWidth
-            margin="normal"
-          />
-        </Box>
-        <Box className="filter-row">
-          <TextField
-            id="degreeFilter"
-            label="Degree (e.g. BTech, MBA)"
-            variant="outlined"
-            value={degreeFilter}
-            onChange={(e) => setDegreeFilter(e.target.value)}
-            fullWidth
-            margin="normal"
           />
         </Box>
 
         {/* Match Mode */}
         <FormControl component="fieldset" sx={{ mt: 2 }}>
-          <FormLabel component="legend" sx={{ color: '#fff' }}>Match Mode</FormLabel>
+          <FormLabel component="legend" sx={{ color: '#333' }}>
+            Match Mode
+          </FormLabel>
           <RadioGroup
             row
             aria-label="matchMode"
@@ -132,15 +158,13 @@ function HomePage() {
           >
             <FormControlLabel
               value="any"
-              control={<Radio sx={{ color: '#fff' }} />}
+              control={<Radio />}
               label="Match any founder"
-              sx={{ color: '#fff' }}
             />
             <FormControlLabel
               value="all"
-              control={<Radio sx={{ color: '#fff' }} />}
+              control={<Radio />}
               label="Match all founders"
-              sx={{ color: '#fff' }}
             />
           </RadioGroup>
         </FormControl>
@@ -155,7 +179,7 @@ function HomePage() {
         </Box>
       </Box>
 
-      {/* === Filtered Results === */}
+      {/* Filtered Results */}
       {filteredCompanies.map((company, idx) => (
         <div key={idx} className="home-card">
           <h2 className="home-card-title">{company['company-name']}</h2>
