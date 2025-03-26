@@ -8,7 +8,6 @@ function CompanyPage() {
   const { companyName } = useParams();
   const decodedName = decodeURIComponent(companyName);
 
-  // Find the company by name.
   const company = companies.find(
     (c) => c['company-name'] === decodedName
   );
@@ -22,7 +21,6 @@ function CompanyPage() {
     );
   }
 
-  // Prepare founder details.
   const foundersData = company['linkedin-data']
     ? Object.entries(company['linkedin-data']).map(([founderName, data]) => ({
         name: founderName,
