@@ -14,9 +14,7 @@ import {
   TextField
 } from '@mui/material';
 
-/**
- * Transform synonyms for institutes (e.g. "IIT" to "indian institute of technology")
- */
+
 function transformSearchTerm(term) {
   const synonymsMap = {
     iit: 'indian institute of technology',
@@ -27,7 +25,6 @@ function transformSearchTerm(term) {
   return synonymsMap[lower] || term;
 }
 
-// Options for the dropdown lists; update as needed
 const instituteOptions = [
   "Indian Institute of Technology",
   "Stanford University",
@@ -48,13 +45,10 @@ const degreeOptions = [
 ];
 
 function HomePage() {
-  // For dropdown selections, store the string value (or null)
   const [selectedInstitute, setSelectedInstitute] = useState(null);
   const [selectedDegree, setSelectedDegree] = useState(null);
-  // Match mode: "any" or "all"
   const [matchMode, setMatchMode] = useState('any');
 
-  // Applied filters state updated on clicking "Search"
   const [appliedFilters, setAppliedFilters] = useState({
     institute: '',
     degree: '',
@@ -76,7 +70,6 @@ function HomePage() {
     setAppliedFilters({ institute: '', degree: '', mode: 'any' });
   };
 
-  // Filtering logic for each founder (using only institute and degree)
   function doesFounderMatch([, founderObj]) {
     let matchInstitute = true;
     let matchDegree = true;
@@ -93,7 +86,6 @@ function HomePage() {
     return matchInstitute && matchDegree;
   }
 
-  // Filter companies based on applied institute and degree filters.
   const filteredCompanies = companies.filter((company) => {
     if (!company['linkedin-data']) return false;
     const founderDataArray = Object.entries(company['linkedin-data']);
