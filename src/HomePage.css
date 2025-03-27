@@ -1,4 +1,4 @@
-/* New Homepage Theme - Full Desktop Screen with Dropdowns */
+/* src/HomePage.css */
 .home-container {
   width: 100%;
   padding: 3rem 2rem;
@@ -27,7 +27,6 @@
   max-width: 800px;
 }
 
-/* Advanced filter section styled as a card */
 .advanced-filter {
   background: #fff;
   border-radius: 16px;
@@ -45,9 +44,7 @@
   margin-bottom: 1.5rem;
 }
 
-/* Autocomplete TextField styles will inherit from global MUI theme and additional CSS if needed */
 
-/* Action buttons */
 .home-btn {
   background: #1abc9c;
   color: #fff;
@@ -67,7 +64,6 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Card style for search results */
 .home-card {
   background: #fff;
   border-radius: 16px;
@@ -96,7 +92,6 @@
   margin-bottom: 1.5rem;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .home-title {
     font-size: 2.5rem;

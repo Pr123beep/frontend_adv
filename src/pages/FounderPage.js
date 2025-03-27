@@ -1,3 +1,4 @@
+// src/pages/FounderPage.js
 import React from 'react';
 import '../FounderPage.css';
 import { useParams, Link } from 'react-router-dom';
@@ -10,7 +11,6 @@ function FounderPage() {
   let founderData = null;
   let parentCompany = '';
 
-  // Find the founder data across all companies
   for (const company of companies) {
     const data = company['linkedin-data']?.[decodedName];
     if (data) {

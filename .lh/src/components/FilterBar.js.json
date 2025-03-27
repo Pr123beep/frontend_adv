@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 11,
+            "activePatchIndex": 12,
             "patches": [
                 {
                     "date": 1742380255134,
@@ -52,6 +52,10 @@
                 {
                     "date": 1742556003809,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,9 @@\n         endIcon={<ArrowDropDownIcon />}\r\n         sx={{\r\n           textTransform: 'none',\r\n           borderRadius: '9999px',\r\n-          borderInl: 1,\r\n+          \r\n         }}\r\n       >\r\n         All filters\r\n       </Button>\r\n"
+                },
+                {
+                    "date": 1743051012233,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+\r\n import React, { useState } from 'react';\r\n import { Box, Chip, Button } from '@mui/material';\r\n import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';\r\n import { OpenInFullTwoTone } from '@mui/icons-material';\r\n"
                 }
             ],
             "date": 1742380255134,

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 11,
             "patches": [
                 {
                     "date": 1742192035893,
@@ -44,6 +44,14 @@
                 {
                     "date": 1742555874784,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,8 @@\n     return {\r\n       role: exp.Role,\r\n       months: totalMonths,\r\n       company: exp.Company\r\n-      years: years.Company\r\n     };\r\n   });\r\n \r\n   return (\r\n"
+                },
+                {
+                    "date": 1742560181232,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n   Tooltip,\r\n   ResponsiveContainer\r\n } from 'recharts';\r\n \r\n-// Helper function to calculate months from date range\r\n const calculateMonths = (dateRange) => {\r\n   const [startDate, endDate] = dateRange.split('-').map(date => date.trim());\r\n   \r\n   const start = new Date(startDate);\r\n"
+                },
+                {
+                    "date": 1742560187792,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,11 +15,10 @@\n   \r\n   const start = new Date(startDate);\r\n   let end = endDate.toLowerCase().includes('present') ? new Date() : new Date(endDate);\r\n \r\n-  // Calculate the difference in months\r\n   const months = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());\r\n-  return months > 0 ? months : 0; // Ensure non-negative value\r\n+  return months > 0 ? months : 0; \r\n };\r\n \r\n function ExperienceChart({ experiences }) {\r\n   const data = experiences.map((exp) => {\r\n"
                 }
             ],
             "date": 1742192035893,

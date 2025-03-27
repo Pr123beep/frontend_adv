@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 15,
+            "activePatchIndex": 16,
             "patches": [
                 {
                     "date": 1742191877834,
@@ -68,6 +68,10 @@
                 {
                     "date": 1742558482762,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5992,39 +5992,9 @@\n           \"Kartik Luke Singh\"\r\n         ],\r\n         \"linkedin-data\": {\r\n           \"Kartik Luke Singh\": {\r\n-            //// src/App.js\r\n-import React from 'react';\r\n-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';\r\n-import './styles.css';\r\n-import './HomePage.css';\r\n-import './CompanyPage.css';\r\n-import './FounderPage.css';\r\n-import HomePage from './pages/HomePage';\r\n-import CompanyPage from './pages/CompanyPage';\r\n-import FounderPage from './pages/FounderPage';\r\n-import NoLinkedInPage from './pages/NoLinkedInPage';\r\n-import Navbar from './components/layout/Navbar';\r\n-import Footer from './components/layout/Footer';\r\n-\r\n-function App() {\r\n-  return (\r\n-    <Router>\r\n-      <Navbar />\r\n-      <Routes>\r\n-        <Route path=\"/\" element={<HomePage />} />\r\n-        <Route path=\"/company/:companyName\" element={<CompanyPage />} />\r\n-        <Route path=\"/founder/:founderName\" element={<FounderPage />} />\r\n-        <Route path=\"/no-linkedin/:founderName\" element={<NoLinkedInPage />} />\r\n-      </Routes>\r\n-      <Footer />\r\n-    </Router>\r\n-  );\r\n-}\r\n-\r\n-export default App;\r\n-\r\n+            //\r\n             \"LinkedIn URL\": \"\",\r\n             \"Bio\": \"Throughout my career, I've been building startup products with an eye for everything; from the tables in the database to the pixels on the page. Looking to build the next generation of ground-breaking products and services.\",\r\n             \"Experience\": [\r\n               {\r\n"
+                },
+                {
+                    "date": 1742559770885,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5992,9 +5992,9 @@\n           \"Kartik Luke Singh\"\r\n         ],\r\n         \"linkedin-data\": {\r\n           \"Kartik Luke Singh\": {\r\n-            \"https://www.linkedin.com/in/kartikluke/\"\r\n+            //\"https://www.linkedin.com/in/kartikluke/\"\r\n             \"LinkedIn URL\": \"https://www.linkedin.com/in/kartikluke/\",\r\n             \"Bio\": \"Throughout my career, I've been building startup products with an eye for everything; from the tables in the database to the pixels on the page. Looking to build the next generation of ground-breaking products and services.\",\r\n             \"Experience\": [\r\n               {\r\n"
                 }
             ],
             "date": 1742191877834,

@@ -1,3 +1,4 @@
+// src/components/FilterBar.js
 import React, { useState } from 'react';
 import { Box, Chip, Button } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 11,
             "patches": [
                 {
                     "date": 1742191989286,
@@ -32,6 +32,26 @@
                 {
                     "date": 1742558356679,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,15 @@\n+// src/App.js\n import React from 'react';\n import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';\n-import './styles.css'; // global styles\n+import './styles.css';\n import './HomePage.css';\n import './CompanyPage.css';\n import './FounderPage.css';\n-\n import HomePage from './pages/HomePage';\n import CompanyPage from './pages/CompanyPage';\n import FounderPage from './pages/FounderPage';\n+import NoLinkedInPage from './pages/NoLinkedInPage';\n import Navbar from './components/layout/Navbar';\n import Footer from './components/layout/Footer';\n \n function App() {\n@@ -18,8 +19,9 @@\n       <Routes>\n         <Route path=\"/\" element={<HomePage />} />\n         <Route path=\"/company/:companyName\" element={<CompanyPage />} />\n         <Route path=\"/founder/:founderName\" element={<FounderPage />} />\n+        <Route path=\"/no-linkedin/:founderName\" element={<NoLinkedInPage />} />\n       </Routes>\n       <Footer />\n     </Router>\n   );\n"
+                },
+                {
+                    "date": 1743052910572,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,4 @@\n-// src/App.js\n import React from 'react';\n import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';\n import './styles.css';\n import './HomePage.css';\n"
+                },
+                {
+                    "date": 1743053132441,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+// src/App.js\n import React from 'react';\n import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';\n import './styles.css';\n import './HomePage.css';\n"
+                },
+                {
+                    "date": 1743053402748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+// src/App.js\n import React from 'react';\n import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';\n import './styles.css';\n import './HomePage.css';\n"
+                },
+                {
+                    "date": 1743054100362,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,4 @@\n-// src/App.js\n-// src/App.js\n import React from 'react';\n import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';\n import './styles.css';\n import './HomePage.css';\n"
+                },
+                {
+                    "date": 1743054290736,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,27 +1,27 @@\n-import React from 'react';\n+import React, { Suspense, lazy } from 'react';\n import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';\n import './styles.css';\n-import './HomePage.css';\n-import './CompanyPage.css';\n-import './FounderPage.css';\n-import HomePage from './pages/HomePage';\n-import CompanyPage from './pages/CompanyPage';\n-import FounderPage from './pages/FounderPage';\n-import NoLinkedInPage from './pages/NoLinkedInPage';\n import Navbar from './components/layout/Navbar';\n import Footer from './components/layout/Footer';\n \n+const HomePage = lazy(() => import('./pages/HomePage'));\n+const CompanyPage = lazy(() => import('./pages/CompanyPage'));\n+const FounderPage = lazy(() => import('./pages/FounderPage'));\n+const NoLinkedInPage = lazy(() => import('./pages/NoLinkedInPage'));\n+\n function App() {\n   return (\n     <Router>\n       <Navbar />\n-      <Routes>\n-        <Route path=\"/\" element={<HomePage />} />\n-        <Route path=\"/company/:companyName\" element={<CompanyPage />} />\n-        <Route path=\"/founder/:founderName\" element={<FounderPage />} />\n-        <Route path=\"/no-linkedin/:founderName\" element={<NoLinkedInPage />} />\n-      </Routes>\n+      <Suspense fallback={<div style={{textAlign:\"center\", marginTop:\"2rem\"}}>Loading...</div>}>\n+        <Routes>\n+          <Route path=\"/\" element={<HomePage />} />\n+          <Route path=\"/company/:companyName\" element={<CompanyPage />} />\n+          <Route path=\"/founder/:founderName\" element={<FounderPage />} />\n+          <Route path=\"/no-linkedin/:founderName\" element={<NoLinkedInPage />} />\n+        </Routes>\n+      </Suspense>\n       <Footer />\n     </Router>\n   );\n }\n"
                 }
             ],
             "date": 1742191989286,
