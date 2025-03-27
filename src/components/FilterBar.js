@@ -18,12 +18,10 @@ const categories = [
 ];
 
 function FilterBar({ onFilterChange }) {
-  // Single selection example
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const handleChipClick = (categoryKey) => {
     if (selectedCategory === categoryKey) {
-      // Deselect if the same chip is clicked
       setSelectedCategory(null);
       onFilterChange(null);
     } else {
@@ -33,7 +31,6 @@ function FilterBar({ onFilterChange }) {
   };
 
   const handleAllFiltersClick = () => {
-    // For advanced filtering
     console.log('All filters clicked!');
   };
 
